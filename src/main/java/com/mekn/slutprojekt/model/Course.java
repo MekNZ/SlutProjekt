@@ -9,38 +9,38 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
-    private String course;
+    private String name;
     private boolean isVegetarian;
     private double price;
 
-    
+    @ManyToMany
     private List<Ingredient> ingredients;
 
     public Course() {
     }
 
-    public Course(String course, boolean isVegetarian, double price) {
-        this.course = course;
+    public Course(String name, boolean isVegetarian, double price) {
+        this.name = name;
         this.isVegetarian = isVegetarian;
         this.price = price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getCourse() {
-        return course;
+    public String getName() {
+        return name;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isVegetarian() {
