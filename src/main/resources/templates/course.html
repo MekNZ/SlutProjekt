@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--xmlns = Extensive Markup Language Names Space. th=http://www.thymeleaf.org
+är som en statisk import ist för att skriva urlen efter varje tagg.
+Det går alltså att skriva http://www.thymeleaf.org:href istället för th:href-->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Course page</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.1/css/bootstrap.min.css" type="text/css">
+
+</head>
+<body>
+
+<div class="container text-center" style="color: plum">
+
+    <div class="h2">Manage Courses</div>
+
+    <div class="m-3">
+        <a class="h4" th:href="@{/course/new}">Add New Course</a>
+
+    </div>
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="table-responsive">
+            <tr>
+                <th>ID</th>
+                <th>Course name</th>
+                <th>Price</th>
+                <th>Vegetarian</th>
+            </tr>
+            </thead>
+
+            <tbody class="table-light">
+            <th:block th:each="course : ${courseList}">
+                <tr>
+                    <td th:text="${course.id}"></td>
+                    <td th:text="${course.name}"></td>
+                    <td th:text="${course.price}"></td>
+                    <td th:text="${course.isVegetarian}"></td>
+                    <td>
+                        <a class="h4 m-3" th:href="@{'/course/edit/' + ${course.id}}">Edit</a>
+                        <a class="h4 m-3" th:href="@{'/course/delete/' + ${course.id}}">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

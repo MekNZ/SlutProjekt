@@ -12,8 +12,8 @@ public class Course {
     private Integer id;
 
     private String name;
+    private Double price;
     private boolean isVegetarian;
-    private double price;
 
     @ManyToMany
     private List<Ingredient> ingredients;
@@ -21,10 +21,10 @@ public class Course {
     public Course() {
     }
 
-    public Course(String name, boolean isVegetarian, double price) {
+    public Course(String name, Double price, boolean isVegetarian) {
         this.name = name;
-        this.isVegetarian = isVegetarian;
         this.price = price;
+        this.isVegetarian = isVegetarian;
     }
 
     public Integer getId() {
@@ -43,20 +43,20 @@ public class Course {
         this.name = name;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public boolean isVegetarian() {
         return isVegetarian;
     }
 
     public void setVegetarian(boolean vegetarian) {
         isVegetarian = vegetarian;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public List<Ingredient> getIngredients() {
@@ -66,7 +66,6 @@ public class Course {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
-
 }
 
 

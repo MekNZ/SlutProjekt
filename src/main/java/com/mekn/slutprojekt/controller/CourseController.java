@@ -5,10 +5,7 @@ import com.mekn.slutprojekt.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CourseController {
@@ -27,6 +24,8 @@ public class CourseController {
     @GetMapping("/course/new")
     public String addNewCourse(Model model) {
         model.addAttribute("course", new Course());
+        boolean isVegetarian = false;
+        model.addAttribute("vegetarian", isVegetarian);
         return "course_form";
     }
 
@@ -49,6 +48,7 @@ public class CourseController {
             courseService.saveCourse(course);
             return "redirect:/course";
     }
+
 
 }
 
