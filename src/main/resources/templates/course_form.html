@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>[[${pageTitle}]]</title>
@@ -13,7 +13,7 @@
 
     <form class="container-fluid text-center" th:action="@{/course/save}" method="post" th:object="${course}"
           style="max-width: 700px; margin: 0 auto;">
-        <input type="hidden" th:field="*{id}">
+     <input type="hidden" th:field="*{id}">
         <div class="border border-secondary rounded p-3">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Name</label>
@@ -27,21 +27,27 @@
                     <input type="number" th:field="*{price}" class="form-control"/>
                 </div>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Vegetarian</label>
+            <!--<div class="form-group row">
+&lt;!&ndash;                <label class="col-sm-4 col-form-label">Vegetarian</label>&ndash;&gt;
 
                 <div class="form-check">
-                    <input th:type="checkbox" vertical-align="middle" name="vegetarian" th:checked="${vegetarian}" class="form-check-input"/>
+&lt;!&ndash;                    <input th:text="Vegetarian" th:type="checkbox" vertical-align="middle" name="vegetarian" th:checked="${vegetarian}" class="form-check-input"/>&ndash;&gt;
                 </div>
-            </div>
+            </div>-->
 
-            <div class="form-group row" th:action="@{/course/addingredient}" method="post">
-                <label class="col-sm-4 col-form-label">Ingredient</label>
-                <div class="col-sm-6">
-                    <input type="text" th:field="${ingredient.name}" class="form-control"/>
-                    <button class="btn btn-primary m2 btn-dark rounded" type="submit">Add</button>
-                </div>
-            </div>
+
+
+            <p>
+                <label>Vegetarian
+                    <input type="checkbox" name="vegetarian"
+
+
+                           th:checked="${vegetarian}"
+
+                    />
+                </label>
+            </p>
+
 
             <div class="form-group row">
 
@@ -51,6 +57,18 @@
                 </div>
             </div>
         </div>
+
+    </form>
+
+    <form class="container-fluid text-center" th:action="@{/course/ingredient/save}" method="post">
+
+    <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Ingredient</label>
+        <div class="col-sm-6">
+            <input type="text" th:field="${ingredient}" class="form-control"/>
+            <button class="btn btn-primary m2 btn-dark rounded" type="submit">Add</button>
+        </div>
+    </div>
 
     </form>
 </div>

@@ -12,10 +12,6 @@ public class IngredientService {
     @Autowired
     private IngredientRepository ingredientRepository;
 
-    public void createIngredient(Ingredient ingredient) {
-        ingredientRepository.save(ingredient);
-    }
-
     public Ingredient updateIngredientById(Integer id) {
         Ingredient ingredientToUpdate = ingredientRepository.findById(id).get();
         return ingredientRepository.save(ingredientToUpdate);
@@ -30,5 +26,6 @@ public class IngredientService {
     }
     public void connectNewIngredientToNewCourse(Ingredient ingredient, Course course){
         course.getIngredients().add(ingredient);
+        ingredient.getCourses().add(course);
     }
 }

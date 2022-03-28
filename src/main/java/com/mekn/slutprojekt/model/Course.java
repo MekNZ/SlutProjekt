@@ -1,5 +1,7 @@
 package com.mekn.slutprojekt.model;
 
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class Course {
     private Double price;
     private boolean isVegetarian;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Ingredient> ingredients;
 
     public Course() {
@@ -25,6 +27,12 @@ public class Course {
         this.name = name;
         this.price = price;
         this.isVegetarian = isVegetarian;
+    }
+
+    public void addIngredient(Ingredient ingredient){
+
+        ingredients.add(ingredient);
+
     }
 
     public Integer getId() {

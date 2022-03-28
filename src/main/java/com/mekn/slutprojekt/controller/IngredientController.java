@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IngredientController {
 
-    @Autowired
+    /*@Autowired
     CourseService courseService;
 
     @Autowired
@@ -28,5 +28,5 @@ public class IngredientController {
     public String addIngredientToCourse(Ingredient ingredient){
         ingredientService.saveIngredient(ingredient);
         return "redirect:/course_form";
-    }
+    }*/
 }

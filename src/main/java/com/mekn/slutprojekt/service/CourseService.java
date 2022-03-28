@@ -30,9 +30,9 @@ public class CourseService {
         courseRepository.deleteById(id);
     }
 
-    public Course updateCourseById(Integer id) {
-        Course updateCourse = courseRepository.findById(id).get();
-        return courseRepository.save(updateCourse);
+    public Course findById(Integer id) {
+        return courseRepository.findById(id).get();
+
     }
 
 }
