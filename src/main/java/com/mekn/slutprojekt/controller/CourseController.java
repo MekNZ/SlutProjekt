@@ -29,10 +29,9 @@ public class CourseController {
         return "course_form";
     }
 
-    @DeleteMapping("/course/delete{id}")
+    @GetMapping("/course/delete/{id}")
     public String deleteCourse(@PathVariable("id") Integer id) {
         courseService.deleteCourseById(id);
-
         return "redirect:/course";
     }
 
@@ -40,7 +39,8 @@ public class CourseController {
     public String updateCourse(@PathVariable("id") Integer id, Model model) {
         Course course = courseService.updateCourseById(id);
         model.addAttribute("course", course);
-        return "edit";
+        model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
+        return "course_form";
     }
 
     @PostMapping("/course/save")

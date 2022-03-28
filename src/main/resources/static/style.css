@@ -1,0 +1,15 @@
+form-check {
+    text-align: center;
+    /* center checkbox horizontally */
+    vertical-align: middle;
+    /* center checkbox vertically */
+}
+
+table {
+    border: 1px solid;
+    width: 200px;
+}
+
+tr {
+    height: 80px;
+}
