@@ -18,13 +18,12 @@ public class CourseService {
         return (List<Course>) courseRepository.findAll();
     }
 
-
     public Course findSingleCourse(Integer id) {
         return courseRepository.findById(id).get();
     }
 
-    public void saveCourse(Course course) {
-        courseRepository.save(course);
+    public Course saveCourse(Course course) {
+        return courseRepository.save(course);
     }
 
     public void deleteCourseById(Integer id) {

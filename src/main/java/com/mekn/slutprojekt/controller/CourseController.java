@@ -1,6 +1,7 @@
 package com.mekn.slutprojekt.controller;
 
 import com.mekn.slutprojekt.model.Course;
+import com.mekn.slutprojekt.model.Ingredient;
 import com.mekn.slutprojekt.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,6 @@ public class CourseController {
     public String findAll(Model model) {
         Iterable<Course> courses = courseService.findAllCourse();
         model.addAttribute("courseList", courses);
-
         return "course";
     }
 
@@ -26,6 +26,7 @@ public class CourseController {
         model.addAttribute("course", new Course());
         boolean isVegetarian = false;
         model.addAttribute("vegetarian", isVegetarian);
+        model.addAttribute("ingredient", new Ingredient());
         return "course_form";
     }
 
@@ -39,7 +40,7 @@ public class CourseController {
     public String updateCourse(@PathVariable("id") Integer id, Model model) {
         Course course = courseService.updateCourseById(id);
         model.addAttribute("course", course);
-        model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
+        model.addAttribute("pageTitle", "Edit Course (ID: " + id + ")");
         return "course_form";
     }
 
