@@ -35,13 +35,7 @@
                 </div>
             </div>
 
-            <div class="form-group row" th:action="@{/course/addingredient}" method="post">
-                <label class="col-sm-4 col-form-label">Ingredient</label>
-                <div class="col-sm-6">
-                    <input type="text" th:field="${ingredient.name}" class="form-control"/>
-                    <button class="btn btn-primary m2 btn-dark rounded" type="submit">Add</button>
-                </div>
-            </div>
+
 
             <div class="form-group row">
 
@@ -53,10 +47,20 @@
         </div>
 
     </form>
+
+    <!--<div class="form-group row" th:action="@{/course/ingredient/save}" method="post">
+        <label class="col-sm-4 col-form-label">Ingredient</label>
+        <div class="col-sm-6">
+            <input type="text" th:field="${ingredient.name}" class="form-control"/>
+            <button class="btn btn-primary m2 btn-dark rounded" type="submit">Add</button>
+        </div>
+    </div>-->
+
+
 </div>
 <script type="application/javascript">
     function cancelForm(){
-        window.location="/users";
+        window.location="/course";
     }
 </script>
 

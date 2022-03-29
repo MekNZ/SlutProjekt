@@ -41,6 +41,7 @@ Det går alltså att skriva http://www.thymeleaf.org:href istället för th:href
                     <td>
                         <a class="h4 m-3" th:href="@{'/course/edit/' + ${course.id}}">Edit</a>
                         <a class="h4 m-3" th:href="@{'/course/delete/' + ${course.id}}">Delete</a>
+                        <a class="h4 m-3" th:href="@{'/course/ingredient/' + ${course.id}}">Add ingredient</a>
                     </td>
                 </tr>
             </th:block>

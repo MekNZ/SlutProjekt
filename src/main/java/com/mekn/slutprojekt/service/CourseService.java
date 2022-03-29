@@ -35,4 +35,16 @@ public class CourseService {
         return courseRepository.save(updateCourse);
     }
 
+    public void addIngredientToCourse() {
+
+
+
+
+    }
+
+    public Course findById(Integer id) {
+
+       return courseRepository.findById(id).get();
+
+    }
 }

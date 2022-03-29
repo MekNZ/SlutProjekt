@@ -66,6 +66,9 @@ public class Course {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+    public void addIngredient(Ingredient ingredient) {
+    }
 }
 
 
