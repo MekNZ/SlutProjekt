@@ -26,18 +26,32 @@ public class CourseController {
     public String findAll(Model model) {
         Iterable<Course> courses = courseService.findAllCourse();
         model.addAttribute("courseList", courses);
+
         return "course";
+    }
+
+
+    @GetMapping("/course/new/row")
+    public String addRow(){
+        int numberOfIngredients = 1;
+        Course course = new Course();
+
+
+        return "redirect:/course_form";
+
     }
 
     @GetMapping("/course/new")
     public String addNewCourse(Model model) {
         Course course = new Course();
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 5; i++) {
             course.addIngredient(new Ingredient());
         }
         model.addAttribute("course", course);
         boolean isVegetarian = false;
         model.addAttribute("vegetarian", isVegetarian);
+        model.addAttribute("pageTitle", "Add New Course");
+        model.addAttribute("label", "Ingredients");
         return "course_form";
     }
 
@@ -52,6 +66,7 @@ public class CourseController {
         Course course = courseService.findById(id);
         model.addAttribute("course", course);
         model.addAttribute("pageTitle", "Edit Course (ID: " + id + ")");
+
         return "course_form";
     }
 

@@ -36,7 +36,9 @@
             </div>
 
 
-            <label class="col-sm-4 col-form-label">Ingredients</label>
+
+
+            <label class="col-sm-4 col-form-label">[[${label}]]</label>
             <div th:each="course, ingredient : *{ingredients}">
 
                 <input th:field="*{ingredients[__${ingredient.index}__].name}" />
