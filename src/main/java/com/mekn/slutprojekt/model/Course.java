@@ -1,6 +1,7 @@
 package com.mekn.slutprojekt.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +16,8 @@ public class Course {
     private Double price;
     private boolean isVegetarian;
 
-    @ManyToMany
-    private List<Ingredient> ingredients;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<Ingredient> ingredients = new ArrayList<>();
 
     public Course() {
     }
@@ -68,6 +69,9 @@ public class Course {
     }
 
     public void addIngredient(Ingredient ingredient) {
+
+        this.ingredients.add(ingredient);
+
     }
 }
 

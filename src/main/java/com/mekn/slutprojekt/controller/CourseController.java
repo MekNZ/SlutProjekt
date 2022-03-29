@@ -9,9 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class CourseController {
 
@@ -34,10 +31,13 @@ public class CourseController {
 
     @GetMapping("/course/new")
     public String addNewCourse(Model model) {
-        model.addAttribute("course", new Course());
+        Course course = new Course();
+        for (int i = 1; i <= 3; i++) {
+            course.addIngredient(new Ingredient());
+        }
+        model.addAttribute("course", course);
         boolean isVegetarian = false;
         model.addAttribute("vegetarian", isVegetarian);
-        model.addAttribute("ingredient", new Ingredient());
         return "course_form";
     }
 
@@ -57,7 +57,6 @@ public class CourseController {
 
     @PostMapping("/course/save")
     public String saveCourse(Course course) {
-
         courseService.saveCourse(course);
         return "redirect:/course";
     }
@@ -72,15 +71,7 @@ public class CourseController {
     }*/
 
 
-    public String connectNewCourseToNewIngredient(Ingredient ingredient, Course course) {
 
-
-        //saveIngredient(ingredient);
-
-        ingredientService.connectNewIngredientToNewCourse(ingredient, course);
-
-        return "";
-    }
 
 }
 
