@@ -6,6 +6,8 @@ import com.mekn.slutprojekt.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class IngredientService {
 
@@ -31,4 +33,10 @@ public class IngredientService {
     public void connectNewIngredientToNewCourse(Ingredient ingredient, Course course){
         course.getIngredients().add(ingredient);
     }
+
+    public List<Ingredient> getAllIngredients(){
+
+        return (List<Ingredient>) ingredientRepository.findAll();
+    }
+
 }

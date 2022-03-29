@@ -27,6 +27,9 @@
                     <input type="number" th:field="*{price}" class="form-control"/>
                 </div>
             </div>
+
+
+
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Vegetarian</label>
 
@@ -36,15 +39,37 @@
             </div>
 
 
+            <div th:each="course, ingredient : *{ingredients}">
+                <label class="col-sm-4 col-form-label">Add new ingredient</label>
+                <input th:field="*{ingredients[__${ingredient.index}__].name}" />
 
 
-            <label class="col-sm-4 col-form-label">[[${label}]]</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Choose Ingredients:</label>
+
+                <div class="form-check">
+                    <th:block th:each="ingredient : ${ingredientsList}" >
+
+                        <div>
+                            <input th:type="checkbox" th:field="*{ingredients}" th:text="${ingredient.name}"
+                                   th:value="${ingredient.id}"/>
+
+                        </div>
+
+                    </th:block>
+                </div>
+            </div>
+
+
+            <!--<label class="col-sm-4 col-form-label">[[${label}]]</label>
             <div th:each="course, ingredient : *{ingredients}">
 
                 <input th:field="*{ingredients[__${ingredient.index}__].name}" />
 
 
-            </div>
+            </div>-->
 
             <div class="form-group row">
 
