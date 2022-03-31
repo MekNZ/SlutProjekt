@@ -2,6 +2,7 @@ package com.mekn.slutprojekt.service;
 
 import com.mekn.slutprojekt.dao.CourseRepository;
 import com.mekn.slutprojekt.model.Course;
+import com.mekn.slutprojekt.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,9 @@ public class CourseService {
                 distinct().limit(7).forEach(c -> randomCourseList.add(courses.get(c)));
 
         return randomCourseList;
-    } 
+    }
+
+
 
     public Course saveCourse(Course course) {
         return courseRepository.save(course);
@@ -38,10 +41,6 @@ public class CourseService {
     public void deleteCourseById(Integer id) {
         courseRepository.deleteById(id);
     }
-
-
-
-
 
     public Course findById(Integer id) {
 

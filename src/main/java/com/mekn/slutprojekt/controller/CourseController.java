@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class CourseController {
@@ -41,6 +42,16 @@ public class CourseController {
 
         return "redirect:/course_form";
 
+    }
+
+    @GetMapping("/course/showmenu/groceries")
+    public String showGroceriesList(Model model){
+
+        Set<Ingredient> ingredients = ingredientService.showIngredients();
+
+        model.addAttribute("ingredients", ingredients);
+
+        return "ingredients";
     }
 
     @GetMapping("/course/new")

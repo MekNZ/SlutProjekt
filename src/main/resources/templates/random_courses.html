@@ -10,7 +10,7 @@
 
 <div class="container text-center" style="color: plum">
 
-    <div class="h2">Menu</div>
+    <div class="h2">Menu of The Week</div>
 
 
 
@@ -44,6 +44,25 @@
 
     </div>
 </div>
+
+<div class="container text-center">
+    <a class="h4" th:href="@{/course/showmenu/groceries}">Groceries List</a>
+
+</div>
+<br/>
+<div class="container text-center">
+
+    <div class="col-sm-12" >
+
+        <button type="button" class="btn btn-secondary btn-danger" onclick="cancelForm()">Return to Homepage</button>
+    </div>
+</div>
+
+<script type="application/javascript">
+    function cancelForm(){
+        window.location="/course";
+    }
+</script>
 
 </body>
 </html>
