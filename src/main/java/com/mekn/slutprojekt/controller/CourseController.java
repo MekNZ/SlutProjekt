@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Controller
 public class CourseController {
 
@@ -41,19 +44,30 @@ public class CourseController {
 
     }
 
+    @GetMapping("/course/showmenu/groceries")
+    public String showGroceriesList(Model model){
+
+        Set<Ingredient> ingredients = ingredientService.showIngredients();
+
+        model.addAttribute("ingredients", ingredients);
+
+        return "ingredients";
+    }
+
     @GetMapping("/course/new")
     public String addNewCourse(Model model) {
         Course course = new Course();
-        for (int i = 1; i <= 5; i++) {
-            course.addIngredient(new Ingredient());
-        }
+        course.addIngredient(new Ingredient());
+        List<Ingredient> ingredientsList = ingredientService.getAllIngredients();
         model.addAttribute("course", course);
         boolean isVegetarian = false;
         model.addAttribute("vegetarian", isVegetarian);
         model.addAttribute("pageTitle", "Add New Course");
         model.addAttribute("label", "Ingredients");
+        model.addAttribute("ingredientsList", ingredientsList);
         return "course_form";
     }
+
 
     @GetMapping("/course/delete/{id}")
     public String deleteCourse(@PathVariable("id") Integer id) {
@@ -76,6 +90,15 @@ public class CourseController {
         return "redirect:/course";
     }
 
+    @GetMapping("/course/showmenu")
+    public String showMenuPage(Model model){
+
+        List<Course> menu = courseService.randomCourseList();
+
+        model.addAttribute("menu", menu);
+
+        return "random_courses";
+    }
 
     /*@PostMapping("/course/ingredient/save")
     public String saveIngredient(Ingredient ingredient) {

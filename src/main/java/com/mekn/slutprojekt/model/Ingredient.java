@@ -2,6 +2,7 @@ package com.mekn.slutprojekt.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Ingredient {
@@ -45,5 +46,18 @@ public class Ingredient {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return id.equals(that.id) && name.equals(that.name) && courses.equals(that.courses);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, courses);
     }
 }
