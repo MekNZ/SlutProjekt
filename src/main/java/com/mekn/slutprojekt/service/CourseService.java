@@ -21,18 +21,47 @@ public class CourseService {
         return (List<Course>) courseRepository.findAll();
     }
 
-    public List<Course> randomCourseList(){
+    public List<Course> randomCourseList() {
 
         List<Course> courses = findAllCourse();
         List<Course> randomCourseList = new ArrayList<>();
 
-        ThreadLocalRandom.current().ints(0, courses.size()).
-                distinct().limit(7).forEach(c -> randomCourseList.add(courses.get(c)));
+        if (courses.size() < 7) {
+            ThreadLocalRandom.current().ints(0, courses.size()).
+                    distinct().limit(courses.size()).forEach(c -> randomCourseList.add(courses.get(c)));
+        } else {
+            ThreadLocalRandom.current().ints(0, courses.size()).
+                    distinct().limit(7).forEach(c -> randomCourseList.add(courses.get(c)));
+        }
 
         return randomCourseList;
     }
 
+    public List<Course> vegetarianCourses(){
+        List<Course> courses = findAllCourse();
+        List<Course> vegetarianCourses = checkIfVegetarian(courses);
+        List<Course> randomVegetarianCourses = new ArrayList<>();
+        if(vegetarianCourses.size() < 7) {
+            ThreadLocalRandom.current().ints(0, vegetarianCourses.size()).
+                    distinct().limit(vegetarianCourses.size());
+            return vegetarianCourses;
+        }else {
+            ThreadLocalRandom.current().ints(0, vegetarianCourses.size()).
+                    distinct().limit(7).forEach(r -> randomVegetarianCourses.add(vegetarianCourses.get(r)));
+            return randomVegetarianCourses;
+        }
 
+    }
+
+    public List<Course> checkIfVegetarian(List<Course> courses){
+        List<Course> vegetarianCourses = new ArrayList<>();
+        for (Course course : courses) {
+            if (course.isVegetarian() == true){
+                vegetarianCourses.add(course);
+            }
+        }
+        return vegetarianCourses;
+    }
 
     public Course saveCourse(Course course) {
         return courseRepository.save(course);
@@ -44,7 +73,7 @@ public class CourseService {
 
     public Course findById(Integer id) {
 
-       return courseRepository.findById(id).get();
+        return courseRepository.findById(id).get();
 
     }
 }

@@ -14,7 +14,7 @@ public class Ingredient {
     @Column(unique = true)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "ingredients")
     private List<Course> courses;
 
     public Ingredient() {

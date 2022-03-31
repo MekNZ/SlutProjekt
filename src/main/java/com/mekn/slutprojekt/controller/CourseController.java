@@ -35,7 +35,7 @@ public class CourseController {
 
 
     @GetMapping("/course/new/row")
-    public String addRow(){
+    public String addRow() {
         int numberOfIngredients = 1;
         Course course = new Course();
 
@@ -45,7 +45,7 @@ public class CourseController {
     }
 
     @GetMapping("/course/showmenu/groceries")
-    public String showGroceriesList(Model model){
+    public String showGroceriesList(Model model) {
 
         Set<Ingredient> ingredients = ingredientService.showIngredients();
 
@@ -91,7 +91,7 @@ public class CourseController {
     }
 
     @GetMapping("/course/showmenu")
-    public String showMenuPage(Model model){
+    public String showMenuPage(Model model) {
 
         List<Course> menu = courseService.randomCourseList();
 
@@ -100,15 +100,13 @@ public class CourseController {
         return "random_courses";
     }
 
-    /*@PostMapping("/course/ingredient/save")
-    public String saveIngredient(Ingredient ingredient) {
+    @GetMapping("/course/vegetarian")
+    public String showVegetarianCourses(Model model) {
 
-        ingredientService.saveIngredient(ingredient);
-
-        return "course_form";
-    }*/
-
-
+        List<Course> vegetarianCourses = courseService.vegetarianCourses();
+        model.addAttribute("vegetarian_courses", vegetarianCourses);
+        return "vegetarian_courses";
+    }
 
 
 }

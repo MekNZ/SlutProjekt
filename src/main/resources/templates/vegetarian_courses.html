@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vegetarian Courses</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/static/style.css}">
+</head>
+<body>
+
+<div>
+    <table class="table table-bordered">
+        <thead class="table-responsive">
+        <tr>
+            <th>ID</th>
+            <th>Course name</th>
+            <th>Price</th>
+            <th>Vegetarian</th>
+        </tr>
+        </thead>
+
+        <tbody class="table-light">
+        <th:block th:each="course : ${vegetarian_courses}">
+            <tr>
+                <td th:text="${course.id}"></td>
+                <td th:text="${course.name}"></td>
+                <td th:text="${course.price}"></td>
+                <td th:text="${course.isVegetarian}"></td>
+                <td>
+
+                </td>
+            </tr>
+        </th:block>
+
+        </tbody>
+
+    </table>
+
+</div>
+</div>
+
+
+</body>
+</html>
