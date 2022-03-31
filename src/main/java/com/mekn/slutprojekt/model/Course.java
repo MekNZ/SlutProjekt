@@ -16,7 +16,7 @@ public class Course {
     private Double price;
     private boolean isVegetarian;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST)
     private List<Ingredient> ingredients = new ArrayList<>();
 
     public Course() {

@@ -53,11 +53,11 @@ public class Ingredient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return id.equals(that.id) && name.equals(that.name) && courses.equals(that.courses);
+        return Objects.equals(name, that.name) && Objects.equals(courses, that.courses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, courses);
+        return Objects.hash(name, courses);
     }
 }
