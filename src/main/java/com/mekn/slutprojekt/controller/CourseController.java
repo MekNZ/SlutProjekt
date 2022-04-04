@@ -78,8 +78,11 @@ public class CourseController {
     @GetMapping("/course/edit/{id}")
     public String updateCourse(@PathVariable("id") Integer id, Model model) {
         Course course = courseService.findById(id);
+        List<Ingredient> ingredientsList = ingredientService.getAllIngredients();
+
         model.addAttribute("course", course);
         model.addAttribute("pageTitle", "Edit Course (ID: " + id + ")");
+        model.addAttribute("ingredientsList", ingredientsList);
 
         return "course_form";
     }
