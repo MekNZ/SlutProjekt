@@ -21,25 +21,8 @@ public class IngredientService {
         this.courseService = courseService;
     }
 
-    public void createIngredient(Ingredient ingredient) {
-        ingredientRepository.save(ingredient);
-    }
-
-    public Ingredient updateIngredientById(Integer id) {
-        Ingredient ingredientToUpdate = ingredientRepository.findById(id).get();
-        return ingredientRepository.save(ingredientToUpdate);
-    }
-
-    public Ingredient findIngredientByNameInService(String name) {
-        return ingredientRepository.findIngredientByName(name);
-    }
-
     public Ingredient saveIngredient(Ingredient ingredient) {
         return ingredientRepository.save(ingredient);
-    }
-
-    public void connectNewIngredientToNewCourse(Ingredient ingredient, Course course) {
-        course.getIngredients().add(ingredient);
     }
 
     public List<Ingredient> getAllIngredients() {
@@ -54,11 +37,8 @@ public class IngredientService {
         for (int i = 0; i < menu.size(); i++) {
             List<Ingredient> ingredientsFromCourse = menu.get(i).getIngredients();
             for (int j = 0; j < ingredientsFromCourse.size(); j++) {
-
                 ingredients.add(ingredientsFromCourse.get(j));
-
             }
-
         }
         return ingredients;
     }

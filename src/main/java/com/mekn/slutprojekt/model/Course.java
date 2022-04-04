@@ -68,11 +68,6 @@ public class Course {
         this.ingredients = ingredients;
     }
 
-    public void addIngredient(Ingredient ingredient) {
-
-        this.ingredients.add(ingredient);
-
-    }
 }
 
 

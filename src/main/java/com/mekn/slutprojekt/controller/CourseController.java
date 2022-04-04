@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Set;
 
+@SessionAttributes("course")
 @Controller
 public class CourseController {
 
-
     private CourseService courseService;
     private IngredientService ingredientService;
+    private boolean isNewCourse = false;
+    private Integer id;
 
     @Autowired
     public CourseController(CourseService courseService, IngredientService ingredientService) {
@@ -33,22 +35,9 @@ public class CourseController {
         return "course";
     }
 
-
-    @GetMapping("/course/new/row")
-    public String addRow() {
-        int numberOfIngredients = 1;
-        Course course = new Course();
-
-
-        return "redirect:/course_form";
-
-    }
-
     @GetMapping("/course/showmenu/groceries")
     public String showGroceriesList(Model model) {
-
         Set<Ingredient> ingredients = ingredientService.showIngredients();
-
         model.addAttribute("ingredients", ingredients);
 
         return "ingredients";
@@ -56,16 +45,28 @@ public class CourseController {
 
     @GetMapping("/course/new")
     public String addNewCourse(Model model) {
+        isNewCourse = true;
         Course course = new Course();
-        course.addIngredient(new Ingredient());
         List<Ingredient> ingredientsList = ingredientService.getAllIngredients();
         model.addAttribute("course", course);
         boolean isVegetarian = false;
         model.addAttribute("vegetarian", isVegetarian);
         model.addAttribute("pageTitle", "Add New Course");
-        model.addAttribute("label", "Choose ingredients:");
         model.addAttribute("ingredientsList", ingredientsList);
+        model.addAttribute("ingredientLabel", "Add new ingredient:");
+        model.addAttribute("ingredient", new Ingredient());
         return "course_form";
+    }
+
+    @PostMapping("/course/save/ingredient")
+    public String saveIngredient(Ingredient ingredient, Model model) {
+        ingredientService.saveIngredient(ingredient);
+
+        if (isNewCourse) {
+            return addNewCourse(model);
+        } else {
+            return updateCourse(id, model);
+        }
     }
 
 
@@ -77,12 +78,14 @@ public class CourseController {
 
     @GetMapping("/course/edit/{id}")
     public String updateCourse(@PathVariable("id") Integer id, Model model) {
+        this.id = id;
         Course course = courseService.findById(id);
         List<Ingredient> ingredientsList = ingredientService.getAllIngredients();
-
+        model.addAttribute("ingredient", new Ingredient());
         model.addAttribute("course", course);
         model.addAttribute("pageTitle", "Edit Course (ID: " + id + ")");
         model.addAttribute("ingredientsList", ingredientsList);
+        model.addAttribute("ingredientLabel", "Edit ingredient:");
 
         return "course_form";
     }
