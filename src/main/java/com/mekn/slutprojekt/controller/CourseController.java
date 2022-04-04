@@ -63,7 +63,7 @@ public class CourseController {
         boolean isVegetarian = false;
         model.addAttribute("vegetarian", isVegetarian);
         model.addAttribute("pageTitle", "Add New Course");
-        model.addAttribute("label", "Ingredients");
+        model.addAttribute("label", "Choose ingredients:");
         model.addAttribute("ingredientsList", ingredientsList);
         return "course_form";
     }
